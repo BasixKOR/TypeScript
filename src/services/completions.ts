@@ -2799,7 +2799,6 @@ namespace ts.Completions {
                     sourceFile,
                     moduleFile,
                     preferences,
-                    packageJsonFilter,
                     getModuleSpecifierResolutionHost(info.isFromPackageJson),
                     moduleSpecifierCache);
             }

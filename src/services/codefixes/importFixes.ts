@@ -434,7 +434,7 @@ namespace ts.codefix {
         return result;
 
         function isImportable(program: Program, moduleFile: SourceFile | undefined, isFromPackageJson: boolean) {
-            return !moduleFile || isImportableFile(program, importingFile, moduleFile, preferences, /*packageJsonFilter*/ undefined, getModuleSpecifierResolutionHost(isFromPackageJson), host.getModuleSpecifierCache?.());
+            return !moduleFile || isImportableFile(program, importingFile, moduleFile, preferences, getModuleSpecifierResolutionHost(isFromPackageJson), host.getModuleSpecifierCache?.());
         }
     }
 
@@ -972,7 +972,7 @@ namespace ts.codefix {
         });
         function addSymbol(moduleSymbol: Symbol, toFile: SourceFile | undefined, exportedSymbol: Symbol, exportKind: ExportKind, program: Program, isFromPackageJson: boolean): void {
             const moduleSpecifierResolutionHost = getModuleSpecifierResolutionHost(isFromPackageJson);
-            if (toFile && isImportableFile(program, fromFile, toFile, preferences, packageJsonFilter, moduleSpecifierResolutionHost, moduleSpecifierCache) ||
+            if (toFile && isImportableFile(program, fromFile, toFile, preferences, moduleSpecifierResolutionHost, moduleSpecifierCache) ||
                 !toFile && packageJsonFilter.allowsImportingAmbientModule(moduleSymbol, moduleSpecifierResolutionHost)
             ) {
                 const checker = program.getTypeChecker();
