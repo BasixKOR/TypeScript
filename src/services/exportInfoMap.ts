@@ -354,8 +354,8 @@ namespace ts {
         const toReference = fromInfo.packageDependencies.get(toLocator.name);
 
         return toReference === toLocator.reference
-            || [...fromInfo.packageDependencies.values()].some(ref =>
-                ref[0] === toLocator.name && ref[1] === toLocator.reference
+            || Array.from<string | [string, string]>(fromInfo.packageDependencies.values()).some(ref =>
+                Array.isArray(ref) && ref[0] === toLocator.name && ref[1] === toLocator.reference
             );
     }
 
